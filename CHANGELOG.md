@@ -1,5 +1,7 @@
 # Changelog
 
+## [v0.3.4](https://github.com/Jerrypoi/youki/compare/v0.3.3...v0.3.4) - 2024-07-04
+
 ## [v0.3.3](https://github.com/containers/youki/compare/v0.3.2...v0.3.3) - 2024-05-16
 ### 💪 Improvements
 - Add support for rsvd hugetlb cgroup by @omprakaash in https://github.com/containers/youki/pull/2719
