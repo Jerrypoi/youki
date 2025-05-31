@@ -97,15 +97,6 @@ impl ContainerBuilderImpl {
             .as_ref()
             .ok_or(MissingSpecError::Process)?;
 
-        if matches!(self.container_type, ContainerType::InitContainer) {
-            if let Some(hooks) = self.spec.hooks() {
-                hooks::run_hooks(
-                    hooks.create_runtime().as_ref(),
-                    self.container.as_ref(),
-                    None,
-                )?
-            }
-        }
 
         // Need to create the notify socket before we pivot root, since the unix
         // domain socket used here is outside of the rootfs of container. During
@@ -203,6 +194,15 @@ impl ContainerBuilderImpl {
                 .save()?;
         }
 
+        if matches!(self.container_type, ContainerType::InitContainer) {
+            if let Some(hooks) = self.spec.hooks() {
+                hooks::run_hooks(
+                    hooks.create_runtime().as_ref(),
+                    self.container.as_ref(),
+                    None,
+                )?
+            }
+        }
         Ok(init_pid)
     }
 
